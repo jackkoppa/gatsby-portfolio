@@ -20,6 +20,7 @@
     "sharp": "^0.21.3"
   },
   "devDependencies": {
+    "graphql-request": "^1.8.2",
     "prettier": "^1.16.4"
   },
   "keywords": [
