@@ -31,7 +31,7 @@
     "update": "node ./build/get-github-data.js",
     "build": "npm run update && gatsby build",
     "develop": "npm run update && gatsby develop",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "deploy": "npm run update && gatsby build --prefix-paths && gh-pages -d public",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
