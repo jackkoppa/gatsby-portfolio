@@ -1,9 +1,13 @@
+const githubPinnedRepos = require('./generated/github-pinned-repos.json')
+
 module.exports = {
   siteMetadata: {
     title: `Portfolio Site`,
     description: `Initial work for a portfolio site w/ Gatsby.js`,
     author: `@gatsbyjs`,
+    githubPinnedRepos
   },
+  pathPrefix: "/gatsby-portfolio",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {

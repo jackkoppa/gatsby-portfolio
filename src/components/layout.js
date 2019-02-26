@@ -12,6 +12,13 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            githubPinnedRepos {
+              node {
+                name
+                id
+                url
+              }
+            }
           }
         }
       }
@@ -28,6 +35,9 @@ const Layout = ({ children }) => (
           }}
         >
           <main>{children}</main>
+          {data.site.siteMetadata.githubPinnedRepos.map(repo => {
+            return <div>{repo.node.name} {repo.node.url}</div>
+          })}
           <footer>
             © {new Date().getFullYear()}, Built with
             {` `}
