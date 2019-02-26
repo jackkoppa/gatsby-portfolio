@@ -7,6 +7,7 @@ module.exports = {
     author: `@gatsbyjs`,
     githubPinnedRepos
   },
+  pathPrefix: "/gatsby-portfolio",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
