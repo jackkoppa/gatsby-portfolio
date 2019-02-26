@@ -9,7 +9,7 @@ branches:
     - master
 
 script:
-  - npm run build
+  - if [ "$TRAVIS_PULL_REQUEST" = "true" ]; then npm run build; fi
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run deploy; fi
 
 notifications:
