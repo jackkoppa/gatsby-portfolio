@@ -3,6 +3,8 @@ const { GraphQLClient } = require('graphql-request')
 var fs = require('fs');
 const { promisify } = require("util")
 
+const generatedDirectory = './generated'
+
 async function main() {
     const endpoint = 'https://api.github.com/graphql'
     const graphQLClient = new GraphQLClient(endpoint, {
@@ -29,6 +31,11 @@ async function main() {
     
     const data = await graphQLClient.request(query)
     const jsonData = JSON.stringify(data.repositoryOwner.pinnedRepositories.edges, undefined, 2)
+
+    if (!fs.existsSync(generatedDirectory)) {
+      fs.mkdirSync(generatedDirectory)
+    }
+    
     await promisify(fs.writeFile)('./generated/github-pinned-repos.json', jsonData, 'utf8')
 }
 
