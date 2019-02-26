@@ -19,6 +19,7 @@ async function main() {
                   node {
                     name
                     id
+                    url
                   }
                 }
               }
@@ -27,8 +28,8 @@ async function main() {
     }`
     
     const data = await graphQLClient.request(query)
-    const jsonData = JSON.stringify(data, undefined, 2)
-    await promisify(fs.writeFile)('./generated/github-starred-repos.json', jsonData, 'utf8')
+    const jsonData = JSON.stringify(data.repositoryOwner.pinnedRepositories.edges, undefined, 2)
+    await promisify(fs.writeFile)('./generated/github-pinned-repos.json', jsonData, 'utf8')
 }
 
 
