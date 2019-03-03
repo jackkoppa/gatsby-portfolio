@@ -39,6 +39,4 @@ async function main() {
     await promisify(fs.writeFile)('./generated/github-pinned-repos.json', jsonData, 'utf8')
 }
 
-
-main().catch(error => console.error(error))
-
+main()
