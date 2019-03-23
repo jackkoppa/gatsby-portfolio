@@ -10,15 +10,17 @@
     "gatsby-plugin-offline": "^2.0.24",
     "gatsby-plugin-react-helmet": "^3.0.6",
     "gatsby-plugin-sharp": "^2.0.22",
+    "gatsby-plugin-typescript": "^2.0.11",
     "gatsby-source-filesystem": "^2.0.22",
     "gatsby-transformer-sharp": "^2.1.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
-    "sharp": "^0.21.3"
+    "sharp": "^0.22.0"
   },
   "devDependencies": {
+    "@types/react-helmet": "^5.0.8",
     "gh-pages": "^2.0.1",
     "graphql-request": "^1.8.2",
     "prettier": "^1.16.4"
