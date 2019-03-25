@@ -620,3 +620,9 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.work-card {
+  box-shadow: 1px 1px 12px -4px #000;
+  display: flex;
+  width: 50%;
+}
