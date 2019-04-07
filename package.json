@@ -30,7 +30,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "update": "node ./build/get-github-data.js",
+    "update": "node ./build/get-github-data.js && yarn add sharp --dev",
     "build": "yarn update && gatsby build",
     "develop": "yarn update && gatsby develop",
     "deploy": "yarn update && gatsby build --prefix-paths && gh-pages -d public --repo=https://${GITHUB_API_TOKEN}@github.com/jackkoppa/gatsby-portfolio.git --silent",
