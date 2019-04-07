@@ -3,6 +3,8 @@
 language: node_js
 node_js:
   - "node"
+python:
+  - "2.7"
 
 branches:
   only:
