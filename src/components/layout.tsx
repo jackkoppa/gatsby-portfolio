@@ -44,6 +44,11 @@ const Layout = ({ children }) => (
             <a href="https://www.gatsbyjs.org">Gatsby</a>
           </footer>
         </div>
+        <section className="work-card">
+          <h2>cityaq</h2>
+          <h4>Angular PWA to compare simple air quality data for different cities, using the OpenAQ API</h4>
+          
+        </section>
       </>
     )}
   />

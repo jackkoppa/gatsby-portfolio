@@ -13,24 +13,57 @@ async function main() {
         },
       })
     
+    // https://developer.github.com/v4/explorer/
+    const repoFragment = `
+    edges {
+      node {
+        name
+        id
+        url
+        primaryLanguage {
+          id
+          name
+        }
+      }
+    }
+    `
+
     const query = `{
-        repositoryOwner(login: "jackkoppa") {
-            ... on User {
-              pinnedRepositories(first: 6) {
-                edges {
-                  node {
-                    name
-                    id
-                    url
-                  }
+      repositoryOwner(login: "jackkoppa") {
+        ... on User {
+          pinnedRepositories(first: 6) {
+            edges {
+              node {
+                name
+                id
+                url
+                primaryLanguage {
+                  id
+                  name
                 }
               }
             }
           }
+          repositories(first: 20, orderBy: { field: UPDATED_AT, direction: DESC } ) {
+            edges {
+              node {
+                name
+                id
+                url
+                primaryLanguage {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
     }`
     
     const data = await graphQLClient.request(query)
     const jsonData = JSON.stringify(data.repositoryOwner.pinnedRepositories.edges, undefined, 2)
+    /** @TODO Put non-pinned repos into JSON also */
 
     if (!fs.existsSync(generatedDirectory)) {
       fs.mkdirSync(generatedDirectory)
