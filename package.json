@@ -21,8 +21,12 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^5.0.8",
+    "gatsby-plugin-sass": "^2.1.0",
+    "gatsby-source-graphql": "^2.1.0",
+    "gatsby-transformer-json": "^2.2.0",
     "gh-pages": "^2.0.1",
     "graphql-request": "^1.8.2",
+    "node-sass": "^4.12.0",
     "prettier": "^1.16.4"
   },
   "keywords": [
@@ -30,10 +34,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "update": "node ./build/get-github-data.js && python --version",
-    "build": "yarn update && gatsby build",
-    "develop": "yarn update && gatsby develop",
-    "deploy": "yarn update && gatsby build --prefix-paths && gh-pages -d public --repo=https://${GITHUB_API_TOKEN}@github.com/jackkoppa/gatsby-portfolio.git --silent",
+    "update": "node ./build/getGithubData.js && python --version",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public --repo=https://${GITHUB_API_TOKEN}@github.com/jackkoppa/gatsby-portfolio.git --silent",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "yarn develop",
     "serve": "gatsby serve",
