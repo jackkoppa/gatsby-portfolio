@@ -1,0 +1,4 @@
+schema: node_modules/@octokit/graphql-schema/schema.json
+generates:
+  generated/githubTypes.ts:
+    - typescript

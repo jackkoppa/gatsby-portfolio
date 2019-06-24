@@ -1,11 +1,8 @@
-const githubPinnedRepos = require('./generated/github-pinned-repos.json')
-
 module.exports = {
   siteMetadata: {
-    title: `Portfolio Site`,
-    description: `Initial work for a portfolio site w/ Gatsby.js`,
-    author: `@gatsbyjs`,
-    githubPinnedRepos
+    title: `Jack Koppa`,
+    description: `I make things with a purpose`,
+    author: `@jackkoppa`
   },
   pathPrefix: "/gatsby-portfolio",
   plugins: [
@@ -15,6 +12,19 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        // Url to query from
+        url: "https://api.github.com/graphql",
+        // HTTP headers
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_API_TOKEN}`,
+        }
       },
     },
     `gatsby-transformer-sharp`,
@@ -31,7 +41,8 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-typescript`
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-sass`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

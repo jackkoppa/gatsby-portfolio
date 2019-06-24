@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import "./layout.scss"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -12,13 +12,6 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
-            githubPinnedRepos {
-              node {
-                name
-                id
-                url
-              }
-            }
           }
         }
       }
@@ -26,29 +19,12 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
+        <div className="layout-wrapper">
           <main>{children}</main>
-          {data.site.siteMetadata.githubPinnedRepos.map(repo => {
-            return <div>{repo.node.name} {repo.node.url}</div>
-          })}
           <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+            © {new Date().getFullYear()}, Jack Koppa
           </footer>
         </div>
-        <section className="work-card">
-          <h2>cityaq</h2>
-          <h4>Angular PWA to compare simple air quality data for different cities, using the OpenAQ API</h4>
-          
-        </section>
       </>
     )}
   />
