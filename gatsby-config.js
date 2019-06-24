@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Portfolio Site`,
-    description: `Initial work for a portfolio site w/ Gatsby.js`,
-    author: `@gatsbyjs`
+    title: `Jack Koppa`,
+    description: `I make things with a purpose`,
+    author: `@jackkoppa`
   },
   pathPrefix: "/gatsby-portfolio",
   plugins: [

@@ -1,0 +1,44 @@
+@import '../styles/settings/index.scss';
+
+.repo-list {
+    display: flex;
+    flex-wrap: wrap;
+    @include mq-sm {
+        margin-right: $spacer * -3;
+    }
+
+    &__header {
+        border-bottom: 3px solid;
+        display: block;
+        font-size: 50px;
+        font-weight: lighter;
+        margin-top: $spacer * 3;
+        width: 100%;
+        @include mq-sm {
+            width: calc(100% - #{$spacer * 3});
+        }
+    }
+
+    &__language-filter {
+        padding: $spacer;
+        cursor: pointer;
+        display: inline-block;
+        margin: $spacer $spacer $spacer 0;
+        text-transform: lowercase;
+        font-weight: bold;
+
+        svg {
+            margin-left: $spacer;
+            opacity: 0.6;
+        }
+
+        &:hover svg {
+            opacity: 1;
+
+            path {
+                stroke: currentColor;
+                stroke-width: 5%;
+            }
+        }
+    }
+}

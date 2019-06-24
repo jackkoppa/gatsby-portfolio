@@ -1,0 +1,7 @@
+@import '../styles/settings/index.scss';
+
+.header-wrapper {
+    margin: 0 auto;
+    max-width: $max-content-width;
+    padding: $spacer * 3;
+}
