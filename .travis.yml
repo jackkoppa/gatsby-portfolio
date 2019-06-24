@@ -10,10 +10,6 @@ branches:
   only:
     - master
 
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
-  - export PATH=$HOME/.yarn/bin:$PATH
-
 script:
   - if [ "$TRAVIS_PULL_REQUEST" = "true" ]; then yarn build; fi
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn deploy; fi
