@@ -73,9 +73,9 @@ export class RepoList extends React.Component<RepoListProps, RepoListState> {
     }
 
     private handleLanguageToggled = (language: Language) => {
-        const languageIndex = this.state.currentLanguages.indexOf(language)
-        if (languageIndex !== -1) {
-            this.setState({ currentLanguages: this.state.currentLanguages.filter(currentLanguage => currentLanguage != language) })
+        const languageExists = this.state.currentLanguages.find(currentLanguage => currentLanguage.name === language.name)
+        if (languageExists) {
+            this.setState({ currentLanguages: this.state.currentLanguages.filter(currentLanguage => currentLanguage.name != language.name) })
         } else {
             this.setState({ currentLanguages: [...this.state.currentLanguages, language] })
         }
