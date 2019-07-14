@@ -1,7 +1,5 @@
 @import '../styles/settings/index.scss';
 
-$highlight-border-height: 3px;
-
 .repo-card {
     box-shadow: 1px 1px 12px -4px #000;
     padding: $spacer;
@@ -36,6 +34,8 @@ $highlight-border-height: 3px;
         text-transform: lowercase;
         font-weight: bold;
         opacity: 0.8;
+
+        &--active,
         &:hover {
             opacity: 1;
             padding-bottom: $spacer - $highlight-border-height;

@@ -23,21 +23,33 @@
         padding: $spacer;
         cursor: pointer;
         display: inline-block;
-        margin: $spacer $spacer $spacer 0;
-        text-transform: lowercase;
         font-weight: bold;
+        margin: $spacer $spacer $spacer 0;
+        opacity: 0.8;
+        text-transform: lowercase;
 
         svg {
             margin-left: $spacer;
             opacity: 0.6;
         }
 
-        &:hover svg {
+        &--active,
+        &:hover {
             opacity: 1;
+            padding-bottom: $spacer - $highlight-border-height;
 
-            path {
-                stroke: currentColor;
-                stroke-width: 5%;
+            .repo-list__language-filter-text {
+                border-bottom: $highlight-border-height solid;
+            }
+
+            svg {
+                opacity: 1;
+    
+                path {
+                    stroke: currentColor;
+                    stroke-width: 5%;
+                }
+
             }
         }
     }
