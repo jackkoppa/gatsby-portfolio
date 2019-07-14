@@ -9,15 +9,22 @@ interface RepoCardProps {
     repo: Repository
     toggleLanguage: (language: Language) => void
     size?: 'sm' | 'md'
+    currentLanguages?: Language[]
 }
 
-const RepoCard: React.SFC<RepoCardProps> = ({ repo, toggleLanguage, size }) => (
+const getCardClass = (language: Language, currentLanguages: Language[]) => {
+    const baseClass = 'repo-card__language'
+    const isCurrentLanguage = currentLanguages.find(currentLanguage => currentLanguage.name === language.name)
+    return `${baseClass} ${isCurrentLanguage ? `${baseClass}--active` :  ''}`
+}
+
+const RepoCard: React.SFC<RepoCardProps> = ({ repo, toggleLanguage, size, currentLanguages }) => (
     <section className={`repo-card ${size === 'sm' ? 'repo-card--small' : ''}`}>
         <div className="repo-card__language-wrapper">
             {repo.languages.edges.map(language => {
                 return (
                     <span 
-                        className="repo-card__language"
+                        className={getCardClass(language.node, currentLanguages)}
                         style={{ 
                             backgroundColor: language.node.color,
                             color: pickTextColor(language.node.color)

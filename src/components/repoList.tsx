@@ -15,6 +15,10 @@ interface RepoListState {
     currentLanguages: Language[]
 }
 
+interface DisplayLanguage extends Language {
+    active: boolean
+}
+
 export class RepoList extends React.Component<RepoListProps, RepoListState> {
     constructor(props: RepoListProps) {
         super(props);
@@ -23,9 +27,14 @@ export class RepoList extends React.Component<RepoListProps, RepoListState> {
 
     public render = () => (
         <div className="repo-list">
-            {this.state.currentLanguages.map(language => (
+            {this.getLanguageFilters().map(language => (
                 <span 
-                    className="repo-list__language-filter" 
+                    className={
+                        `repo-list__language-filter ${language.active 
+                            ? 'repo-list__language-filter--active'
+                            : ''
+                        }`
+                    }
                     style={{ 
                         backgroundColor: language.color,
                         color: pickTextColor(language.color)
@@ -39,14 +48,47 @@ export class RepoList extends React.Component<RepoListProps, RepoListState> {
             ))}
             <h3 className="repo-list__header">Pinned Projects</h3>
             {this.getPinnedRepositories().map(repo =>
-                <RepoCard repo={repo} toggleLanguage={this.handleLanguageToggled} key={repo.id} />
+                <RepoCard 
+                    repo={repo} 
+                    toggleLanguage={this.handleLanguageToggled} 
+                    currentLanguages={this.state.currentLanguages}
+                    key={repo.id}
+                />
             )}
             <h3 className="repo-list__header">Other Projects</h3>
             {this.getOtherRepositories().map(repo =>
-                <RepoCard repo={repo} toggleLanguage={this.handleLanguageToggled} size="sm" key={repo.id} />
+                <RepoCard 
+                    repo={repo} 
+                    toggleLanguage={this.handleLanguageToggled} 
+                    size="sm" 
+                    currentLanguages={this.state.currentLanguages}
+                    key={repo.id}
+                />
             )}
         </div>
     )
+
+    private getLanguageFilters(): DisplayLanguage[] {
+        const allLanguages: Language[] = []
+        this.props.pinnedRepositories.concat(this.props.allRepositories ).forEach(repo => {
+            const languages = repo.node && repo.node.languages && repo.node.languages.edges || []
+            languages.forEach(language => {
+                if (!allLanguages.find(existingLanguage => existingLanguage.name === language.node.name)) {
+                    allLanguages.push(language.node)
+                }
+            })
+        })
+        return allLanguages.map(existingLanguage => {
+            const active = Boolean(this.state.currentLanguages.find(currentLanguage => currentLanguage.name === existingLanguage.name))
+            return { ...existingLanguage, active }
+        }).sort((a, b) => {
+            if (a.active) return -1
+            if (b.active) return 1
+            if (a.name > b.name) return 1
+            if (b.name > a.name) return -1
+            return 0
+        })
+    }
 
     private getPinnedRepositories(): Repository[] {
         return this.filterReposByLanguage(this.props.pinnedRepositories)
